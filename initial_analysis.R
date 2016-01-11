@@ -5,9 +5,9 @@ testvals <- read.csv("activity.csv", header = TRUE, stringsAsFactors = FALSE, na
 # Mean per day
 # Total per day
 testNumberPerDay <- tapply(testvals$steps, testvals$date, sum)
-hist(testNumberPerDay)
-abline(v = mean(testNumberPerDay, na.rm = TRUE), col = "blue", lwd = 1)
-abline(v = median(testNumberPerDay, na.rm = TRUE), col = "green", lwd = 1)
+hist(testNumberPerDay, main = "Total Steps Per Day Histogram", xlab = "Number of steps", ylab = "Number of days")
+#abline(v = mean(sum(testNumberPerDay), na.rm = TRUE), col = "blue", lwd = 1)
+#abline(v = median(testNumberPerDay, na.rm = TRUE), col = "green", lwd = 1)
 # testAvgPerDay <- tapply(testvals$steps, testvals$date, mean)
 # testAvgPerDaydf <- as.data.frame(testAvgPerDay)
 # AvgNames <- names(testAvgPerDay)
@@ -27,10 +27,8 @@ abline(v = median(testNumberPerDay, na.rm = TRUE), col = "green", lwd = 1)
 #testMedianDayNoNA <- testMedianPerDaydf[complete.cases(testMedianPerDaydf$testMedianPerDay),]
 # Output graphic
 #ggplot(data=testMedianDayNoNA, aes(testMedianDayNoNA$date, testMedianDayNoNA$testMedianPerDay)) + geom_histogram(stat = "identity")
-dev.copy(png,"totalDayHist.png")
+dev.copy(png,"figure/totalDayHist.png")
 dev.off()
 medianPerDay <- median(testNumberPerDay, na.rm = TRUE)
-medianPerDay
 meanPerDay <- mean(testNumberPerDay, na.rm = TRUE)
-meanPerDay
 

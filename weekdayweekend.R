@@ -17,14 +17,20 @@ weekdaysFact <- c('Monday','Tuesday','Wednesday','Thursday','Friday')
 # http://stackoverflow.com/questions/28893193/creating-factor-variables-weekend-and-weekday-from-date
 testvals1$wDay <- c('weekend', 'weekday')[(weekdays(testvals1$date) %in% weekdaysFact)+1L]
 
-# Compute weekend data and chart
+# Compute weekend data
 weekendData <- testvals1[testvals1$wDay == "weekend",]
 weekendMsts <- msts(weekendData$steps, seasonal.periods = 24*12)
 applyWeekendMsts <- tapply(weekendMsts, cycle(weekendMsts), mean, na.rm = TRUE)
 
-# Compute weekday data and chart
+# Compute weekday data
 weekdayData <- testvals1[testvals1$wDay == "weekday",]
 weekdayMsts <- msts(weekdayData$steps, seasonal.periods = 24*12)
 applyWeekdayMsts <- tapply(weekdayMsts, cycle(weekdayMsts), mean, na.rm = TRUE)
 
+# Create the chart with two panels, one for weekend, one for weekdays
+par(mfrow=c(2,1))
+plot(applyWeekdayMsts, type = "l", main = "Weekdays", xlab = "", ylab = "Steps")
+plot(applyWeekendMsts, type = "l", main = "Weekends", xlab = "", ylab = "Steps")
 
+dev.copy(png,"figure/weekdayweekend.png")
+dev.off()

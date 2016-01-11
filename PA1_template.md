@@ -31,7 +31,6 @@ The daily activity pattern can be seen starkly in this time series graph:
 
 The graph shows clearly that the highest average steps are taken in the 104th
 interval, which corresponds to 8:35am.
-<!-- ----|---------|---------|---------|---------|---------|---------|       -->
 
 ## Imputing missing values
 The dataset contained 2,304 rows with missing data. I decided to calculate the
@@ -54,7 +53,13 @@ testvals1[is.na(testvals1$steps),1] <- averageReplaceNAs
 
 The altered histogram below shows that there was an increase in the number of
 steps reported that fell into the 5,000 - 10,000 steps range. The highest
-percentage still fell in the 10,000 - 15,000 steps range
+percentage still fell in the 10,000 - 15,000 steps range, but the difference is not as drastic.
 
 ![altered histogram](figure/newDayHist.png)
-## Are there differences in activity patterns between weekdays and weekends?
+
+## Are there differences in activity patterns between weekdays and weekends?  
+The following chart shows a big difference in activity patterns between weekdays and weekends:
+
+![Time series weekday/weekend graph](figure/weekdayweekend.png)
+
+Note that on weekdays, steps are highest in the morning between approximately 7:00am - 8:45am; weekends, however, show steady step activity trends throughout the day, from morning through early evening. From this chart, there is definitely a correlation between the two.

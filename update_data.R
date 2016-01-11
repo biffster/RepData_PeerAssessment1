@@ -12,4 +12,6 @@ testvals1[is.na(testvals1$steps),1] <- averageReplaceNAs
 
 # Compute the number per day
 newNumberPerDay <- tapply(testvals1$steps, testvals1$date, sum)
-hist(testNumberPerDay)
+hist(newNumberPerDay, main = "Total Steps Per Day Histogram", xlab = "Number of steps", ylab = "Number of days")
+dev.copy(png,"figure/newDayHist.png")
+dev.off()
